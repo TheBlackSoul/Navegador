@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Navegador));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -62,6 +63,8 @@
             this.panel11 = new System.Windows.Forms.Panel();
             this.button11 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -83,6 +86,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(91, 101);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
             // button1
@@ -125,6 +129,7 @@
             this.button2.Size = new System.Drawing.Size(112, 67);
             this.button2.TabIndex = 1;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 
@@ -155,6 +160,7 @@
             this.button3.TabIndex = 1;
             this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label3
             // 
@@ -296,9 +302,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(32, 79);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 13);
+            this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 1;
-            this.label8.Text = "Insertar";
+            this.label8.Text = "Atras";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // panel9
@@ -324,9 +330,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(32, 79);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 13);
+            this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 1;
-            this.label9.Text = "Insertar";
+            this.label9.Text = "Ultimo";
             // 
             // panel10
             // 
@@ -353,7 +359,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 13);
             this.label10.TabIndex = 1;
-            this.label10.Text = "Insertar";
+            this.label10.Text = "Primero";
             // 
             // panel11
             // 
@@ -378,9 +384,18 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(32, 79);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(42, 13);
+            this.label11.Size = new System.Drawing.Size(49, 13);
             this.label11.TabIndex = 1;
-            this.label11.Text = "Insertar";
+            this.label11.Text = "Adelante";
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Navegador
             // 
@@ -398,7 +413,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Navegador";
-            this.Size = new System.Drawing.Size(1055, 129);
+            this.Size = new System.Drawing.Size(1073, 134);
             this.Load += new System.EventHandler(this.Navegador_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -461,5 +476,7 @@
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label11;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

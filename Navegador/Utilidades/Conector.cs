@@ -7,17 +7,40 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Navegador.Utilidades
-{    public class Conector
+{
+
+    public class Conector
 
     {
         private MySqlConnection conexion;
-        private string sConexion;
-      
-  
+        private string sConexion,server,db,user,pass;
+
+
+        public Conector()
+        {
+        }
+
+        public Conector(string server,string db, string user, string pass) {
+            this.server = server;
+            this.db = db;
+            this.user = user;
+            this.pass = pass;
+        }
+
+
+
         public bool OpenConnection()
         {
-            sConexion = "SERVER=" + "localhost" + ";" + "DATABASE=" +
-            "blog" + ";" + "UID=" + "root" + ";" + "PASSWORD=" + "" + ";";
+            if (this.server != null || this.db != null || this.user != null || this.pass != null)
+            {
+                sConexion = "SERVER=" + this.server + ";" + "DATABASE=" +
+                this.db + ";" + "UID=" + this.user + ";" + "PASSWORD=" + this.pass + ";";
+            }
+            else {
+                sConexion = "SERVER=" + "localhost" + ";" + "DATABASE=" +
+               "prueba" + ";" + "UID=" + "root" + ";" + "PASSWORD=" + "" + ";";
+
+            }
             conexion = new MySqlConnection(sConexion);
             try
             {
@@ -40,6 +63,23 @@ namespace Navegador.Utilidades
                 return false;
             }
         }
+
+
+        public void consultarSinRetorno(string query) {
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, conexion);
+                  //Execute command
+                cmd.ExecuteNonQuery();
+                //close connection
+                this.CloseConnection();
+            }
+        }
+        
+
+
 
         //Close connection
         private bool CloseConnection()
