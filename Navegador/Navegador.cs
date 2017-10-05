@@ -28,6 +28,8 @@ namespace Navegador
         [Description("Contraseña")]
         [Category("ParametrosBD")]
         public String pass { get; set; }
+        private Conector con;
+        public int iPosicion = 0;
 
         public Navegador()
         {
@@ -96,6 +98,29 @@ namespace Navegador
         {
             if (this.DeleteReceive != null)
                 this.DeleteReceive(this, e);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            iPosicion++;
+            getDatoManipulable(iPosicion);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            iPosicion = 0;
+        }
+
+        public string getDatoManipulable(int posicion) {
+            String resultado = "";
+            con = new Conector(servidor,nombreBD,usuario,pass);
+            con.OpenConnection();
+            DataTable res = con.informacion("Select * FROM users");
+            DataSet data = new DataSet("NAV");
+            data.Tables.Add(res);
+            resultado = data.Tables[0].Rows[iPosicion][1].ToString();
+            MessageBox.Show("Dato : " + resultado);
+            return resultado;
         }
     }
 }
